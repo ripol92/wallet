@@ -1,7 +1,8 @@
 package wallet
 
 import (
-	"github.com/pkg/errors"
+	"errors"
+	_ "github.com/google/uuid"
 	"github.com/ripol92/wallet/pkg/types"
 )
 

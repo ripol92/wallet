@@ -2,4 +2,4 @@ module github.com/ripol92/wallet
 
 go 1.16
 
-require github.com/pkg/errors v0.9.1 // indirect
+require github.com/google/uuid v1.2.0 // indirect
