@@ -129,3 +129,25 @@ func (s *Service) Deposit(accountId int64, amount types.Money)  error {
 	account.Balance += amount
 	return nil
 }
+
+func (s *Service) Repeat(paymentID string) (*types.Payment, error)  {
+	payment, err := s.FindPaymentByID(paymentID)
+	if err != nil {
+		return nil, err
+	}
+
+	repeatPayment := &types.Payment{
+		ID: uuid.New().String(),
+		Amount: payment.Amount,
+		AccountID: payment.AccountID,
+		Category:  payment.Category,
+		Status: payment.Status,
+	}
+
+	repeatPayment, err = s.Pay(repeatPayment.AccountID, repeatPayment.Amount, repeatPayment.Category)
+	if err != nil {
+		return nil, err
+	}
+
+	return repeatPayment, nil
+}
