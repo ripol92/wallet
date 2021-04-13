@@ -19,9 +19,6 @@ jobs:
           go-version: 1.16
         id: go
 
-      - name: Set up GOPRIVATE
-        run: go env -w GOPRIVATE=github.com/ripol92/wallet
-
       - name: Check out code into the Go module directory
         uses: actions/checkout@v2
 
