@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="073d386d-ce5c-447c-aa6d-47cb4a574ea4" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.github/workflows/go.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/go.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/go.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,8 +34,19 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="go.dep" />
   </component>
-  <component name="RunManager" selected="Go Test.TestService_FindAccountById_notSuccess in github.com/ripol92/wallet/pkg/wallet (1)">
+  <component name="RunManager" selected="Go Test.TestService_FindAccountById_notSuccess in github.com/ripol92/wallet/pkg/wallet (2)">
     <configuration name="TestService_FindAccountById_notSuccess in github.com/ripol92/wallet/pkg/wallet (1)" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="wallet" />
+      <working_directory value="$PROJECT_DIR$/pkg/wallet" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="github.com/ripol92/wallet/pkg/wallet" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <pattern value="^\QTestService_FindAccountById_notSuccess\E$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TestService_FindAccountById_notSuccess in github.com/ripol92/wallet/pkg/wallet (2)" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="wallet" />
       <working_directory value="$PROJECT_DIR$/pkg/wallet" />
       <framework value="gotest" />
@@ -67,7 +79,7 @@
       <pattern value="^\QTestService_FindAccountById_success\E$" />
       <method v="2" />
     </configuration>
-    <configuration name="TestService_FindAccountById_success in github.com/ripol92/wallet/pkg/wallet" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+    <configuration name="TestService_FindAccountById_success in github.com/ripol92/wallet/pkg/wallet (2)" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="wallet" />
       <working_directory value="$PROJECT_DIR$/pkg/wallet" />
       <framework value="gotest" />
@@ -80,10 +92,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Test.TestService_FindAccountById_notSuccess in github.com/ripol92/wallet/pkg/wallet (2)" />
+        <item itemvalue="Go Test.TestService_FindAccountById_success in github.com/ripol92/wallet/pkg/wallet (2)" />
         <item itemvalue="Go Test.TestService_FindAccountById_notSuccess in github.com/ripol92/wallet/pkg/wallet (1)" />
         <item itemvalue="Go Test.TestService_FindAccountById_success in github.com/ripol92/wallet/pkg/wallet (1)" />
         <item itemvalue="Go Test.TestService_FindAccountById_notSuccess in github.com/ripol92/wallet/pkg/wallet" />
-        <item itemvalue="Go Test.TestService_FindAccountById_success in github.com/ripol92/wallet/pkg/wallet" />
       </list>
     </recent_temporary>
   </component>
