@@ -116,3 +116,68 @@ func TestService_Repeat(t *testing.T) {
 		t.Error("Wrong balance")
 	}
 }
+
+func TestService_FavoritePayment_success(t *testing.T) {
+	svc := Service{}
+	acc1, _ := svc.RegisterAccount("+9929888444444")
+	acc2, _ := svc.RegisterAccount("+9929888444445")
+	acc3, _ := svc.RegisterAccount("+9929888444446")
+
+	_ = svc.Deposit(acc1.ID, types.Money(100))
+	_ = svc.Deposit(acc2.ID, types.Money(100))
+	_ = svc.Deposit(acc3.ID, types.Money(100))
+
+	payment1, _ := svc.Pay(acc1.ID, types.Money(10), types.PaymentCategory("mobile"))
+
+	favorite, err := svc.FavoritePayment(payment1.ID, "Credit")
+	if  err != nil {
+		t.Error(err)
+	}
+
+	if favorite.Amount != payment1.Amount || favorite.AccountID != payment1.AccountID {
+		t.Error("Wrong payment in favorite")
+	}
+
+	if len(svc.favourites) != 1 {
+		t.Error("Favorite payment not saved")
+	}
+}
+
+func TestService_PayFromFavorite_success(t *testing.T) {
+	svc := Service{}
+	acc1, _ := svc.RegisterAccount("+9929888444444")
+	acc2, _ := svc.RegisterAccount("+9929888444445")
+	acc3, _ := svc.RegisterAccount("+9929888444446")
+
+	_ = svc.Deposit(acc1.ID, types.Money(100))
+	_ = svc.Deposit(acc2.ID, types.Money(100))
+	_ = svc.Deposit(acc3.ID, types.Money(100))
+
+	payment1, _ := svc.Pay(acc1.ID, types.Money(10), types.PaymentCategory("mobile"))
+
+	favorite, err := svc.FavoritePayment(payment1.ID, "Credit")
+	if  err != nil {
+		t.Error(err)
+	}
+
+	if favorite.Amount != payment1.Amount || favorite.AccountID != payment1.AccountID {
+		t.Error("Wrong payment in favorite")
+	}
+
+	if len(svc.favourites) != 1 {
+		t.Error("Favorite payment not saved")
+	}
+
+	favoritePayment, err := svc.PayFromFavorite(favorite.ID)
+	if err != nil {
+		t.Error(err)
+	}
+
+	if favoritePayment.Amount != payment1.Amount {
+		t.Error("Wrong amount")
+	}
+
+	if  acc1.Balance != 80 {
+		t.Error("Payment from favorite not succeed")
+	}
+}

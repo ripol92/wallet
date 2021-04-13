@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="073d386d-ce5c-447c-aa6d-47cb4a574ea4" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/types/types.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/types/types.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pkg/wallet/service.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/wallet/service.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pkg/wallet/service_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/wallet/service_test.go" afterDir="false" />
     </list>
@@ -35,8 +36,8 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="go.dep" />
   </component>
-  <component name="RunManager" selected="Go Test.TestService_Repeat in github.com/ripol92/wallet/pkg/wallet">
-    <configuration name="TestService_FindAccountById_notSuccess in github.com/ripol92/wallet/pkg/wallet (2)" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Go Test.TestService_PayFromFavorite_success in github.com/ripol92/wallet/pkg/wallet">
+    <configuration name="TestService_FavoritePayment_success in github.com/ripol92/wallet/pkg/wallet" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="wallet" />
       <working_directory value="$PROJECT_DIR$/pkg/wallet" />
       <framework value="gotest" />
@@ -44,10 +45,10 @@
       <package value="github.com/ripol92/wallet/pkg/wallet" />
       <directory value="$PROJECT_DIR$" />
       <filePath value="$PROJECT_DIR$" />
-      <pattern value="^\QTestService_FindAccountById_notSuccess\E$" />
+      <pattern value="^\QTestService_FavoritePayment_success\E$" />
       <method v="2" />
     </configuration>
-    <configuration name="TestService_FindAccountById_success in github.com/ripol92/wallet/pkg/wallet (2)" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+    <configuration name="TestService_PayFromFavorite_success in github.com/ripol92/wallet/pkg/wallet" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="wallet" />
       <working_directory value="$PROJECT_DIR$/pkg/wallet" />
       <framework value="gotest" />
@@ -55,7 +56,7 @@
       <package value="github.com/ripol92/wallet/pkg/wallet" />
       <directory value="$PROJECT_DIR$" />
       <filePath value="$PROJECT_DIR$" />
-      <pattern value="^\QTestService_FindAccountById_success\E$" />
+      <pattern value="^\QTestService_PayFromFavorite_success\E$" />
       <method v="2" />
     </configuration>
     <configuration name="TestService_Reject_fail in github.com/ripol92/wallet/pkg/wallet" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
@@ -93,11 +94,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Test.TestService_PayFromFavorite_success in github.com/ripol92/wallet/pkg/wallet" />
+        <item itemvalue="Go Test.TestService_FavoritePayment_success in github.com/ripol92/wallet/pkg/wallet" />
         <item itemvalue="Go Test.TestService_Repeat in github.com/ripol92/wallet/pkg/wallet" />
         <item itemvalue="Go Test.TestService_Reject_fail in github.com/ripol92/wallet/pkg/wallet" />
         <item itemvalue="Go Test.TestService_Reject_success in github.com/ripol92/wallet/pkg/wallet" />
-        <item itemvalue="Go Test.TestService_FindAccountById_notSuccess in github.com/ripol92/wallet/pkg/wallet (2)" />
-        <item itemvalue="Go Test.TestService_FindAccountById_success in github.com/ripol92/wallet/pkg/wallet (2)" />
       </list>
     </recent_temporary>
   </component>
