@@ -13,11 +13,11 @@ const (
 )
 
 type Payment struct {
-	ID 		string
-	Amount 	Money
-	AccountId int64
-	Category PaymentCategory
-	Status PaymentStatus
+	ID        string
+	Amount    Money
+	AccountID int64
+	Category  PaymentCategory
+	Status    PaymentStatus
 }
 
 type Phone string

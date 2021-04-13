@@ -2,6 +2,7 @@ package wallet
 
 import (
 	"errors"
+	"github.com/google/uuid"
 	_ "github.com/google/uuid"
 	"github.com/ripol92/wallet/pkg/types"
 )
@@ -9,6 +10,8 @@ import (
 var ErrPhoneRegistered = errors.New("phone already registered")
 var ErrAmountMustBePositive = errors.New("amount must be greater than zero")
 var ErrAccountNotFound = errors.New("account not found")
+var ErrPaymentNotFound = errors.New("payment not found")
+var ErrNotEnoughBalance = errors.New("not enough balance")
 
 type Service struct {
 	nextAccountId int64
@@ -43,4 +46,86 @@ func (s *Service) FindAccountByID(accountId int64) (*types.Account, error)  {
 	}
 
 	return nil, ErrAccountNotFound
+}
+
+func (s *Service) FindPaymentByID(paymentID string) (*types.Payment, error)  {
+	for _, payment := range s.payments {
+		if payment.ID == paymentID {
+			return payment, nil
+		}
+	}
+
+	return nil, ErrPaymentNotFound
+}
+
+func (s *Service) Reject(paymentID string) error  {
+	for _, payment := range s.payments {
+		if payment.ID == paymentID {
+			payment.Status = types.PaymentStatusFail
+			for _, account := range s.accounts {
+				if account.ID == payment.AccountID {
+					account.Balance += payment.Amount
+				}
+			}
+			return nil
+		}
+	}
+
+	return ErrPaymentNotFound
+}
+
+func (s *Service) Pay (accountId int64, amount types.Money, category types.PaymentCategory) (*types.Payment, error) {
+	if amount <= 0 {
+		 return nil, ErrAmountMustBePositive
+	}
+
+	var account *types.Account
+	for _, acc := range s.accounts {
+		if acc.ID == accountId {
+			account = acc
+			break
+		}
+	}
+
+	if account == nil {
+		return nil, ErrAccountNotFound
+	}
+
+	if account.Balance < amount {
+		return nil, ErrNotEnoughBalance
+	}
+
+	account.Balance -= amount
+	paymentId := uuid.New().String()
+	payment := &types.Payment{
+		ID: paymentId,
+		AccountID: accountId,
+		Amount: amount,
+		Category: category,
+		Status: types.PaymentStatusInProgress,
+	}
+
+	s.payments = append(s.payments, payment)
+	return payment, nil
+}
+
+func (s *Service) Deposit(accountId int64, amount types.Money)  error {
+	if amount <= 0 {
+		 return ErrAmountMustBePositive
+	}
+
+	var account *types.Account
+	for _, acc := range s.accounts {
+		if acc.ID == accountId {
+			account = acc
+			break
+		}
+	}
+
+	if account == nil {
+		return ErrAccountNotFound
+	}
+
+	account.Balance += amount
+	return nil
 }

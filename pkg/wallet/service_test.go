@@ -1,6 +1,8 @@
 package wallet
 
 import (
+	"github.com/google/uuid"
+	"github.com/ripol92/wallet/pkg/types"
 	"testing"
 )
 
@@ -28,5 +30,55 @@ func TestService_FindAccountById_notSuccess(t *testing.T) {
 
 	if err1 == nil {
 		t.Error(err1)
+	}
+}
+
+func TestService_Reject_success(t *testing.T) {
+	svc := Service{}
+	acc1, _ := svc.RegisterAccount("+9929888444444")
+	acc2, _ := svc.RegisterAccount("+9929888444445")
+	acc3, _ := svc.RegisterAccount("+9929888444446")
+
+	_ = svc.Deposit(acc1.ID, types.Money(100))
+	_ = svc.Deposit(acc2.ID, types.Money(100))
+	_ = svc.Deposit(acc3.ID, types.Money(100))
+
+	payment1, _ := svc.Pay(acc1.ID, types.Money(10), types.PaymentCategory("mobile"))
+	svc.Pay(acc2.ID, types.Money(10), types.PaymentCategory("mobile"))
+	svc.Pay(acc3.ID, types.Money(10), types.PaymentCategory("mobile"))
+
+	rejectError := svc.Reject(payment1.ID)
+	if rejectError != nil {
+		t.Error(rejectError)
+	}
+
+	rejectedAccount, _ := svc.FindAccountByID(acc1.ID)
+	if rejectedAccount.Balance != 100 {
+		t.Error("Wrong balance")
+	}
+
+	rejectedPayment, _ := svc.FindPaymentByID(payment1.ID)
+	if rejectedPayment.Status != types.PaymentStatusFail {
+		t.Error("Wrong status")
+	}
+}
+
+func TestService_Reject_fail(t *testing.T) {
+	svc := Service{}
+	acc1, _ := svc.RegisterAccount("+9929888444444")
+	acc2, _ := svc.RegisterAccount("+9929888444445")
+	acc3, _ := svc.RegisterAccount("+9929888444446")
+
+	_ = svc.Deposit(acc1.ID, types.Money(100))
+	_ = svc.Deposit(acc2.ID, types.Money(100))
+	_ = svc.Deposit(acc3.ID, types.Money(100))
+
+	svc.Pay(acc1.ID, types.Money(10), types.PaymentCategory("mobile"))
+	svc.Pay(acc2.ID, types.Money(10), types.PaymentCategory("mobile"))
+	svc.Pay(acc3.ID, types.Money(10), types.PaymentCategory("mobile"))
+
+	rejectError := svc.Reject(uuid.New().String())
+	if rejectError != ErrPaymentNotFound {
+		t.Error("Payment must be not found")
 	}
 }
