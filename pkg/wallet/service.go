@@ -12,6 +12,7 @@ var ErrAmountMustBePositive = errors.New("amount must be greater than zero")
 var ErrAccountNotFound = errors.New("account not found")
 var ErrPaymentNotFound = errors.New("payment not found")
 var ErrNotEnoughBalance = errors.New("not enough balance")
+var ErrFavoriteNotFound = errors.New("favorite not found")
 
 type Service struct {
 	nextAccountId int64
@@ -66,7 +67,7 @@ func (s *Service) FindFavoriteById(favoriteID string) (*types.Favorite, error) {
 		}
 	}
 
-	return nil, ErrPaymentNotFound
+	return nil, ErrFavoriteNotFound
 }
 
 func (s *Service) Reject(paymentID string) error {
