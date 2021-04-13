@@ -2,9 +2,9 @@ name: Go
 
 on:
   push:
-    branches: [ master, main ]
+    branches: [ master, main, v1 ]
   pull_request:
-    branches: [ master, main ]
+    branches: [ master, main, v1 ]
 
 jobs:
 
@@ -18,6 +18,9 @@ jobs:
         with:
           go-version: 1.16
         id: go
+
+      - name: Set up GOPRIVATE
+        run: go env -w GOPRIVATE=github.com/ripol92/wallet
 
       - name: Check out code into the Go module directory
         uses: actions/checkout@v2
